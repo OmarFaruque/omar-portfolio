@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+/* Prefer the Inter variable from next/font when available, fall back to system fonts */
+:root {
+  --font-sans-fallback: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* Light-first design tokens */
+:root {
+  --color-dark: #f8f9fa; /* Softer white background */
+  --color-gray-light: #1a202c; /* Slightly softer black for text */
+  --color-gray-dark: #e9ecef; /* Muted backgrounds */
+  --color-primary: #3672f4; /* A more vibrant, modern blue */
+  --color-primary-dark: #2a5cdd; /* Darker shade for hover */
+  --color-secondary: #ea4c89; /* A secondary accent (e.g., pink/dribbble) for highlights */
+}
+
+/* Dark mode overrides (system-based) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-dark: #121826; /* Deep, desaturated navy background */
+    --color-gray-light: #e2e8f0; /* Warmer, softer light gray for text */
+    --color-gray-dark: #1f2937; /* Darker surface for cards, etc. */
+    --color-primary: #588af5; /* A slightly softer, but still vibrant blue */
+    --color-primary-dark: #4775d7;
+    --color-secondary: #ef7da9; /* Lighter version of the secondary accent */
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-dark);
+  color: var(--color-gray-light);
+  font-family: var(--font-inter, var(--font-sans-fallback));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Basic readable typography
+   Use `inherit` for heading color so utility classes (e.g. Tailwind's `text-*`) can override
+   when Tailwind is available. When Tailwind is not present, headings will inherit the
+   `body` color (which is set to `--color-gray-light`). This avoids accidentally
+   overriding component-level color utilities. */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+li {
+  color: var(--color-gray-light);
+}
+
+/* Code block styling prepared for MDX/blog */
+pre {
+  background: color-mix(in srgb, var(--color-gray-dark) 90%, transparent);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow: auto;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
+}
+
+/* Small utility to keep containers consistent */
+.container {
+  max-width: 1100px;
+}
+
+/* Adaptive section surface: light background in light mode, darker surface in dark mode.
+   This class also sets a readable text color for its contents in both modes so
+   component-level typography can inherit and remain legible. */
+.section-adaptive {
+  background-color: #f8fafc; /* light surface */
+  color: var(--color-gray-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .section-adaptive {
+    background-color: var(--color-gray-dark);
+    color: var(--color-gray-light);
+  }
+}
+
+
+
+/* Small, reliable button classes to ensure consistent spacing and layout
+   even if Tailwind utilities are missing or purged. These are intentionally
+   minimal and can be removed if you prefer pure Tailwind utilities. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+.btn:hover { background: var(--color-primary-dark); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: transparent;
+  border: 1px solid rgba(15,23,36,0.06);
+  text-decoration: none;
+}
+.btn-outline:hover { background: rgba(15,23,36,0.02); }
+
+/* Dark-mode adjustments for manual button classes to ensure contrast */
+@media (prefers-color-scheme: dark) {
+  .btn {
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: #fff;
+    box-shadow: 0 18px 40px rgba(40,80,180,0.18), 0 6px 18px rgba(10,20,40,0.6);
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    z-index: 10;
+    transform: translateZ(0);
+    transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+  }
+
+  .btn-outline {
+    color: #000000b4;
+    border-color: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .btn-outline:hover { background: rgba(255,255,255,0.04); }
+}
+
+/* stronger focus state for keyboard users */
+.btn:focus {
+  outline: none;
+  box-shadow: 0 8px 30px rgba(40,80,180,0.2), 0 0 0 4px rgba(88,138,245,0.12);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.997);
+}
