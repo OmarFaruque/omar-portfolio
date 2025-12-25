@@ -27,7 +27,7 @@ const profiles: ProfileLink[] = [
 export default function Profiles() {
   return (
     <div className="container mx-auto px-4">
-      <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-inherit mb-8">Hire Me / Platforms</h2>
+      <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-inherit mb-8">Hire Me</h2>
 
       <p className="text-center text-slate-800 dark:text-gray-200 max-w-2xl mx-auto mb-8">
         You can hire me through my freelance profiles — fast responses, proven track record, and lifetime bug support. Click a card to visit the profile.

@@ -1,4 +1,3 @@
-import Header from "@/components/header/Header";
 import Hero from "@/components/hero/Hero";
 import About from "@/components/about/About";
 import Skills from "@/components/skills/Skills";
@@ -7,18 +6,18 @@ import Contact from "@/components/contact/Contact";
 import Footer from "@/components/footer/Footer";
 import Section from "@/components/Section";
 import Profiles from '@/components/Profiles';
+import Navigation from "@/components/navigation/Navigation";
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <main className="pt-20">
+      <Navigation />
+      <main>
         <Hero />
         
         <Section id="about" className="py-32 bg-white dark:bg-dark">
           <About />
         </Section>
-        
         <Section id="skills" className="py-32 section-adaptive">
           <Skills />
         </Section>
