@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Load Inter with a few common weights and expose a CSS variable for fallbacks
@@ -39,7 +40,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${inter.variable}`}>{children}</body>
+      <body className={`${inter.className} ${inter.variable}`}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
